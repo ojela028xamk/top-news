@@ -1,6 +1,6 @@
 const token = process.env.REACT_APP_NEWSAPI
 
-const getNews = async (url: string): Promise<unknown> => {
+const getNews = async (url: string) => {
   const options = {
     method: 'GET',
     headers: {
@@ -16,7 +16,7 @@ const getNews = async (url: string): Promise<unknown> => {
   }
 }
 
-const getTopHeadlines = async (): Promise<unknown> => {
+const getTopHeadlines = async () => {
   return getNews(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${token}`)
 }
 

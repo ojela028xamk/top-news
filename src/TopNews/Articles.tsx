@@ -22,9 +22,9 @@ const Articles = () => {
         Get news
       </Button>
       <div className={css.articles}>
-        {articles.map((article) => {
+        {articles.map((article, index) => {
           return (
-            <Card key={article.title}>
+            <Card key={index}>
               <Card.Img variant='top' src={article.urlToImage} />
               <Card.Body>
                 <Card.Title>{article.title ? article.title : '<No Title>'}</Card.Title>
