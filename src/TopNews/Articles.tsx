@@ -22,16 +22,26 @@ const Articles = () => {
         Get news
       </Button>
       <div className={css.articles}>
-        {articles.map((article) => (
-          <Card>
-            <Card.Img variant='top' src={article.urlToImage} />
-            <Card.Body>
-              <Card.Title>{article.title}</Card.Title>
-              <Card.Text>{article.description}</Card.Text>
-              <Button variant='primary'>Go to original</Button>
-            </Card.Body>
-          </Card>
-        ))}
+        {articles.map((article) => {
+          return (
+            <Card key={article.title}>
+              <Card.Img variant='top' src={article.urlToImage} />
+              <Card.Body>
+                <Card.Title>{article.title ? article.title : '<No Title>'}</Card.Title>
+                <Card.Text>{article.description ? article.description : '<No Description>'}</Card.Text>
+                <Button
+                  variant='primary'
+                  disabled={article.url ? false : true}
+                  href={article.url}
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  Go to original
+                </Button>
+              </Card.Body>
+            </Card>
+          )
+        })}
       </div>
     </>
   )
