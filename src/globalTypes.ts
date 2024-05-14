@@ -1,3 +1,13 @@
+export enum Categories {
+  GENERAL = 'General',
+  BUSINESS = 'Business',
+  ENTERTAINMENT = 'Entertainment',
+  HEALTH = 'Health',
+  SCIENCE = 'Science',
+  SPORTS = 'Sports',
+  TECHNOLOGY = 'Technology',
+}
+
 export type TopHeadlinesResponse = {
   status: string
   totalResults: number
