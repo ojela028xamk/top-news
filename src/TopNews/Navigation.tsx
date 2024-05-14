@@ -26,7 +26,11 @@ const Navigation = ({ setArticles }: NavigationProps) => {
   return (
     <nav className={css.navigation}>
       {Object.values(Categories).map((category) => (
-        <span key={category} className={css.navlink} onClick={() => handleCategory(category)}>
+        <span
+          key={category}
+          className={category === currentCategory ? `${css.navlink} ${css.active}` : css.navlink}
+          onClick={() => handleCategory(category)}
+        >
           {category}
         </span>
       ))}
