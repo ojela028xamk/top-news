@@ -1,3 +1,5 @@
+import { Categories } from '../globalTypes'
+
 const token = process.env.REACT_APP_NEWSAPI
 
 const getNews = async (url: string) => {
@@ -16,8 +18,10 @@ const getNews = async (url: string) => {
   }
 }
 
-const getTopHeadlines = async () => {
-  return getNews(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${token}`)
+const getTopHeadlines = async (category: Categories) => {
+  return getNews(
+    `https://newsapi.org/v2/top-headlines?country=us&apiKey=${token}&category=${category.toLocaleLowerCase()}`
+  )
 }
 
 export { getTopHeadlines }
