@@ -41,6 +41,7 @@ const AppContainer = () => {
   }
 
   useEffectOnce(() => {
+    getNews(Categories.GENERAL)
     setNewsData((prev) => ({
       ...prev,
       getNews: getNews,
