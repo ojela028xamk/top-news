@@ -15,6 +15,11 @@ const AppContainer = () => {
   const setNewsData = useNewsData()[1]
 
   const getNews = (category: Categories) => {
+    setNewsData((prev) => ({
+      ...prev,
+      isLoading: true,
+    }))
+
     getTopHeadlines(category)
       .then((res) => {
         const response = res as TopHeadlinesResponse
@@ -24,7 +29,15 @@ const AppContainer = () => {
           currentCategory: category,
         }))
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(() => {
+        setNewsData((prev) => ({
+          ...prev,
+          isLoading: false,
+        }))
+      })
   }
 
   useEffectOnce(() => {
