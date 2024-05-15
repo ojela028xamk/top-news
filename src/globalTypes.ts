@@ -8,6 +8,13 @@ export enum Categories {
   TECHNOLOGY = 'Technology',
 }
 
+export type NewsDataContext = {
+  currentArticles: Article[]
+  currentCategory: Categories
+  isLoading: boolean
+  getNews: (category: Categories) => void
+}
+
 export type TopHeadlinesResponse = {
   status: string
   totalResults: number
