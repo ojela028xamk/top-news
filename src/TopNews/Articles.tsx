@@ -1,15 +1,13 @@
 import { Button, Card } from 'react-bootstrap'
 import css from './Articles.module.scss'
-import { Article } from '../globalTypes'
+import { useNewsData } from '../AppContainer'
 
-type ArticlesProps = {
-  articles: Article[]
-}
+const Articles = () => {
+  const [{ currentArticles }] = useNewsData()
 
-const Articles = ({ articles }: ArticlesProps) => {
   return (
     <div className={css.articles}>
-      {articles.map((article, index) => {
+      {currentArticles.map((article, index) => {
         return (
           <Card key={index}>
             <Card.Img variant='top' src={article.urlToImage} />

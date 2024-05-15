@@ -1,26 +1,13 @@
-import { useState } from 'react'
-import { getTopHeadlines } from '../Services/topHeadlineService'
-import { Article, Categories, TopHeadlinesResponse } from '../globalTypes'
+import { Categories } from '../globalTypes'
 import css from './Navigation.module.scss'
+import { useNewsData } from '../AppContainer'
 
-type NavigationProps = {
-  setArticles: React.Dispatch<React.SetStateAction<Article[]>>
-}
-
-const Navigation = ({ setArticles }: NavigationProps) => {
-  const [currentCategory, setCurrentCategory] = useState<Categories>()
+const Navigation = () => {
+  const [{ currentCategory, getNews }] = useNewsData()
 
   const handleCategory = (category: Categories) => {
     if (currentCategory === category) return
-
-    setCurrentCategory(category)
-
-    getTopHeadlines(category)
-      .then((res) => {
-        const response = res as TopHeadlinesResponse
-        setArticles(response.articles)
-      })
-      .catch((err) => console.log(err))
+    getNews(category)
   }
 
   return (
