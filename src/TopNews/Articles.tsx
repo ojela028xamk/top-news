@@ -42,25 +42,29 @@ const Articles = () => {
         <>
           <h1>{currentCategory}</h1>
           <div className={css.articles}>
-            {currentArticles.map((article, index) => {
-              return (
-                <Card key={index} className={css.article_card}>
-                  <Card.Img variant='top' src={article.urlToImage} />
-                  <Card.Body>
-                    <Card.Title>{article.title}</Card.Title>
-                    <Card.Subtitle className='mb-2 text-muted'>
-                      {article.source.name} <i className='bi bi-circle-fill'></i> {getTimeAgo(article.publishedAt)}
-                    </Card.Subtitle>
-                    <Card.Text>{article.description}</Card.Text>
-                  </Card.Body>
-                  <Card.Footer>
-                    <Button variant='primary' href={article.url} target='_blank' rel='noreferrer'>
-                      Read article
-                    </Button>
-                  </Card.Footer>
-                </Card>
-              )
-            })}
+            {currentArticles
+              .filter((article) => !article.title.includes('[Removed'))
+              .map((article, index) => {
+                const articleTitle = article.title.slice(0, article.title.lastIndexOf('-'))
+
+                return (
+                  <Card key={index} className={css.article_card}>
+                    <Card.Img variant='top' src={article.urlToImage} />
+                    <Card.Body>
+                      <Card.Subtitle className='mb-2 text-muted'>
+                        {article.source.name} <i className='bi bi-circle-fill' /> {getTimeAgo(article.publishedAt)}
+                      </Card.Subtitle>
+                      <Card.Title>{articleTitle}</Card.Title>
+                      <Card.Text>{article.description}</Card.Text>
+                    </Card.Body>
+                    <Card.Footer>
+                      <Button variant='primary' href={article.url} target='_blank' rel='noreferrer'>
+                        Read article
+                      </Button>
+                    </Card.Footer>
+                  </Card>
+                )
+              })}
           </div>
         </>
       )}
