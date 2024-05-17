@@ -1,6 +1,8 @@
 import { Button, Card, Spinner } from 'react-bootstrap'
 import css from './Articles.module.scss'
 import { useNewsData } from '../AppContainer'
+// Photo by Markus Spiske: https://www.pexels.com/photo/coffee-cup-smartphone-notebook-97050/
+import placeholder from '../placeholder.jpg'
 
 const Articles = () => {
   const [{ currentArticles, currentCategory, isLoading }] = useNewsData()
@@ -39,9 +41,10 @@ const Articles = () => {
       {isLoading ? (
         <Spinner animation='border' variant='primary' />
       ) : (
-        <>
+        <div className={css.articles}>
           <h1>{currentCategory}</h1>
-          <div className={css.articles}>
+          <hr />
+          <div className={css.articles_list}>
             {currentArticles
               .filter((article) => !article.title.includes('[Removed'))
               .map((article, index) => {
@@ -49,24 +52,24 @@ const Articles = () => {
 
                 return (
                   <Card key={index} className={css.article_card}>
-                    <Card.Img variant='top' src={article.urlToImage} />
-                    <Card.Body>
-                      <Card.Subtitle className='mb-2 text-muted'>
+                    <Card.Img variant='top' src={article.urlToImage ? article.urlToImage : placeholder} />
+                    <Card.Body className={css.body}>
+                      <Card.Subtitle className={css.subtitle}>
                         {article.source.name} <i className='bi bi-circle-fill' /> {getTimeAgo(article.publishedAt)}
                       </Card.Subtitle>
-                      <Card.Title>{articleTitle}</Card.Title>
-                      <Card.Text>{article.description}</Card.Text>
-                    </Card.Body>
-                    <Card.Footer>
-                      <Button variant='primary' href={article.url} target='_blank' rel='noreferrer'>
+                      <Card.Title className={css.title}>{articleTitle}</Card.Title>
+                      <Card.Text className={css.text}>
+                        {article.description ? article.description : '<No description>'}
+                      </Card.Text>
+                      <Button className={css.button} href={article.url} target='_blank' rel='noreferrer'>
                         Read article
                       </Button>
-                    </Card.Footer>
+                    </Card.Body>
                   </Card>
                 )
               })}
           </div>
-        </>
+        </div>
       )}
     </>
   )
