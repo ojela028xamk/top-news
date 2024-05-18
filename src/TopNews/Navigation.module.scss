@@ -1,28 +1,31 @@
 @import '../variables';
 
-.navigation {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  margin: 2em 0em;
-  width: auto;
-  height: 4em;
-  color: $white;
+.navigation_container {
   background-color: $red;
 
-  .navlink {
-    padding: 1em;
-    font-size: 1.2em;
+  .navigation {
+    margin: auto;
+    width: 1024px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 4em;
+    color: $white;
 
-    &:hover {
-      cursor: pointer;
+    .navlink {
+      padding: 1em;
+      font-size: 1.2em;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $white;
+        color: $black;
+      }
+    }
+
+    .active {
       background-color: $white;
       color: $black;
     }
-  }
-
-  .active {
-    background-color: $white;
-    color: $black;
   }
 }
