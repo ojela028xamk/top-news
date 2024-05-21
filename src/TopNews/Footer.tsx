@@ -1,12 +1,12 @@
-import css from './Footer.module.scss'
+import './Footer.module.scss'
 import newsapi_logo from '../NewsAPI.png'
 
 const Footer = () => {
   return (
-    <div className={css.footer}>
+    <footer>
       <span>Powered by: </span>
       <img src={newsapi_logo} alt='NewsAPI logo' />
-    </div>
+    </footer>
   )
 }
 
