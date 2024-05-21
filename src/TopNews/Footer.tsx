@@ -1,5 +1,5 @@
 import './Footer.module.scss'
-import newsapi_logo from '../NewsAPI.png'
+import newsapi_logo from '../news_api.png'
 
 const Footer = () => {
   return (
