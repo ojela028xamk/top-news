@@ -1,26 +1,31 @@
-.navigation {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  margin: 2em 0em;
-  width: auto;
-  height: 4em;
-  color: white;
-  background-color: rgb(255, 106, 106);
+@import '../variables';
 
-  .navlink {
-    padding: 1em;
-    font-size: 1.2em;
+.navigation_container {
+  background-color: $red;
 
-    &:hover {
-      cursor: pointer;
-      background-color: white;
-      color: black;
+  .navigation {
+    margin: auto;
+    width: 1024px;
+    display: flex;
+    justify-content: space-evenly;
+    height: 4em;
+    color: $white;
+
+    .navlink {
+      padding: 1em;
+      font-size: 1.3em;
+      letter-spacing: 0.1em;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $white;
+        color: $black;
+      }
     }
-  }
 
-  .active {
-    background-color: white;
-    color: black;
+    .active {
+      background-color: $white;
+      color: $black;
+    }
   }
 }

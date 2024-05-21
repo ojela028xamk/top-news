@@ -11,17 +11,19 @@ const Navigation = () => {
   }
 
   return (
-    <nav className={css.navigation}>
-      {Object.values(Categories).map((category) => (
-        <span
-          key={category}
-          className={category === currentCategory ? `${css.navlink} ${css.active}` : css.navlink}
-          onClick={() => handleCategory(category)}
-        >
-          {category}
-        </span>
-      ))}
-    </nav>
+    <div className={css.navigation_container}>
+      <nav className={css.navigation}>
+        {Object.values(Categories).map((category) => (
+          <span
+            key={category}
+            className={category === currentCategory ? `${css.navlink} ${css.active}` : css.navlink}
+            onClick={() => handleCategory(category)}
+          >
+            {category}
+          </span>
+        ))}
+      </nav>
+    </div>
   )
 }
 
