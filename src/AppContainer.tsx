@@ -3,6 +3,7 @@ import Navigation from './TopNews/Navigation'
 import Articles from './TopNews/Articles'
 import { Categories, NewsDataContext, TopHeadlinesResponse } from './globalTypes'
 import { getTopHeadlines } from './Services/topHeadlineService'
+import Footer from './TopNews/Footer'
 
 export const [useNewsData, NewsDataProvider] = createStateContext<NewsDataContext>({
   currentArticles: [],
@@ -52,6 +53,7 @@ const AppContainer = () => {
     <>
       <Navigation />
       <Articles />
+      <Footer />
     </>
   )
 }
