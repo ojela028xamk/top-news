@@ -39,7 +39,7 @@ const Articles = () => {
   return (
     <>
       {isLoading ? (
-        <Spinner animation='border' variant='primary' />
+        <Spinner animation='border' variant='primary' style={{ width: '5rem', height: '5rem', margin: '1em' }} />
       ) : (
         <div className={css.articles}>
           <h1>{currentCategory}</h1>
