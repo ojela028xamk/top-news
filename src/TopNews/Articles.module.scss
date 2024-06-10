@@ -19,7 +19,7 @@
 
     .articles_grid {
       margin: auto;
-      padding: 0 1.5em;
+      padding: 0 1.5em 1.5em 1.5em;
       width: 1024px;
       text-align: left;
       display: grid;
@@ -27,10 +27,12 @@
       overflow: hidden;
       gap: $grid-gap;
       background-color: $white;
+      border-radius: 0 0 1em 1em;
 
       .article_card {
         position: relative;
         border: none;
+        background-color: $white;
 
         img {
           height: 180px;
@@ -83,9 +85,9 @@
       }
 
       .article_card::after {
-        inline-size: 100vw;
+        inline-size: 50vw;
         block-size: $line-thickness;
-        inset-inline-start: 0;
+        inset-inline-start: -25px;
         inset-block-start: calc($line-offset) * -1;
       }
     }
