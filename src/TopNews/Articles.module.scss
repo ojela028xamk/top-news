@@ -1,77 +1,93 @@
 @import '../variables';
 
 .articles {
-  margin: auto;
-  padding: 1.5em 0;
-  width: 1024px;
-  text-align: left;
+  background-image: url('../background.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 1.5em;
 
   .articles_list {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    overflow: hidden;
-    gap: $grid-gap;
-
-    .article_card {
+    h1 {
+      margin: auto;
+      padding: 0.5em;
       background-color: $white;
-      position: relative;
-      border: none;
+      width: 1024px;
+      font-weight: 300;
+      font-size: 3em;
+      border-radius: 0.5em 0.5em 0 0;
+    }
 
-      img {
-        height: 180px;
-        border-radius: 1.2em;
-      }
+    .articles_grid {
+      margin: auto;
+      padding: 0 1.5em;
+      width: 1024px;
+      text-align: left;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      overflow: hidden;
+      gap: $grid-gap;
+      background-color: $white;
 
-      .body {
-        padding: 0em 0.5em;
-        .subtitle {
-          color: rgb(33, 37, 41, 0.75) !important;
-          margin: 1em 0 0.8em 0;
-          i {
-            font-size: 0.4em;
-            vertical-align: middle;
+      .article_card {
+        position: relative;
+        border: none;
+
+        img {
+          height: 180px;
+          border-radius: 1.2em;
+        }
+
+        .body {
+          padding: 0em 0.5em;
+          .subtitle {
+            color: rgb(33, 37, 41, 0.75) !important;
+            margin: 1em 0 0.8em 0;
+            i {
+              font-size: 0.4em;
+              vertical-align: middle;
+            }
           }
-        }
 
-        .title {
-          margin-bottom: 0.8em;
-        }
+          .title {
+            margin-bottom: 0.8em;
+          }
 
-        .text {
-          font-size: 1.1em;
-          line-height: 1.2em;
-        }
+          .text {
+            font-size: 1.1em;
+            line-height: 1.2em;
+          }
 
-        .button {
-          background-color: $blue;
-          border: 1.5px solid $blue;
-          margin-bottom: 0.8em;
-          padding: 0.2em 0.3em;
-          font-size: 1em;
-          letter-spacing: 0.1em;
-
-          &:hover {
-            background-color: $white;
-            color: $black;
+          .button {
+            background-color: $blue;
             border: 1.5px solid $blue;
+            margin-bottom: 0.8em;
+            padding: 0.2em 0.3em;
+            font-size: 1em;
+            letter-spacing: 0.1em;
+
+            &:hover {
+              background-color: $white;
+              color: $black;
+              border: 1.5px solid $blue;
+            }
           }
         }
       }
-    }
 
-    .article_card::before,
-    .article_card::after {
-      content: '';
-      position: absolute;
-      background-color: $line-color;
-      z-index: 1;
-    }
+      .article_card::before,
+      .article_card::after {
+        content: '';
+        position: absolute;
+        background-color: $line-color;
+        z-index: 1;
+      }
 
-    .article_card::after {
-      inline-size: 100vw;
-      block-size: $line-thickness;
-      inset-inline-start: 0;
-      inset-block-start: calc($line-offset) * -1;
+      .article_card::after {
+        inline-size: 100vw;
+        block-size: $line-thickness;
+        inset-inline-start: 0;
+        inset-block-start: calc($line-offset) * -1;
+      }
     }
   }
 }

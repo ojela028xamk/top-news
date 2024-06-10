@@ -42,31 +42,33 @@ const Articles = () => {
         <Spinner animation='border' variant='primary' style={{ width: '5rem', height: '5rem', margin: '1em' }} />
       ) : (
         <div className={css.articles}>
-          <h1>{currentCategory}</h1>
           <div className={css.articles_list}>
-            {currentArticles
-              .filter((article) => !article.title.includes('[Removed'))
-              .map((article, index) => {
-                const articleTitle = article.title.slice(0, article.title.lastIndexOf('-'))
+            <h1>{currentCategory}</h1>
+            <div className={css.articles_grid}>
+              {currentArticles
+                .filter((article) => !article.title.includes('[Removed'))
+                .map((article, index) => {
+                  const articleTitle = article.title.slice(0, article.title.lastIndexOf('-'))
 
-                return (
-                  <Card key={index} className={css.article_card}>
-                    <Card.Img variant='top' src={article.urlToImage ? article.urlToImage : placeholder} />
-                    <Card.Body className={css.body}>
-                      <Card.Subtitle className={css.subtitle}>
-                        {article.source.name} <i className='bi bi-circle-fill' /> {getTimeAgo(article.publishedAt)}
-                      </Card.Subtitle>
-                      <Button className={css.button} href={article.url} target='_blank' rel='noreferrer'>
-                        Read article
-                      </Button>
-                      <Card.Title className={css.title}>{articleTitle}</Card.Title>
-                      <Card.Text className={css.text}>
-                        {article.description ? article.description : '<No description>'}
-                      </Card.Text>
-                    </Card.Body>
-                  </Card>
-                )
-              })}
+                  return (
+                    <Card key={index} className={css.article_card}>
+                      <Card.Img variant='top' src={article.urlToImage ? article.urlToImage : placeholder} />
+                      <Card.Body className={css.body}>
+                        <Card.Subtitle className={css.subtitle}>
+                          {article.source.name} <i className='bi bi-circle-fill' /> {getTimeAgo(article.publishedAt)}
+                        </Card.Subtitle>
+                        <Button className={css.button} href={article.url} target='_blank' rel='noreferrer'>
+                          Read article
+                        </Button>
+                        <Card.Title className={css.title}>{articleTitle}</Card.Title>
+                        <Card.Text className={css.text}>
+                          {article.description ? article.description : '<No description>'}
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
+                  )
+                })}
+            </div>
           </div>
         </div>
       )}
