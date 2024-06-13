@@ -7,7 +7,6 @@ import Footer from './TopNews/Footer'
 export const [useNewsData, NewsDataProvider] = createStateContext<NewsDataContext>({
   currentArticles: [],
   isLoading: false,
-  getNews: () => ({}),
 })
 
 const AppContainer = () => {
@@ -21,7 +20,6 @@ const AppContainer = () => {
 
     getTopNews()
       .then((res) => {
-        console.log('NO REQUEST!!!!!')
         const response = res as TopNewsResponse
         const newsArr = response.top_news.map((headline) => headline.news[0])
 
@@ -54,11 +52,6 @@ const AppContainer = () => {
         currentArticles: JSON.parse(hasNewsData),
       }))
     }
-
-    setNewsData((prev) => ({
-      ...prev,
-      getNews: getNews,
-    }))
   })
 
   return (

@@ -1,7 +1,6 @@
 export type NewsDataContext = {
   currentArticles: News[]
   isLoading: boolean
-  getNews: () => void
 }
 
 export type TopNewsResponse = {
