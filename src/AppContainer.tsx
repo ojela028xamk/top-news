@@ -1,13 +1,11 @@
 import { createStateContext, useEffectOnce } from 'react-use'
-import Navigation from './TopNews/Navigation'
 import Articles from './TopNews/Articles'
-import { Categories, NewsDataContext, TopNewsResponse } from './globalTypes'
+import { NewsDataContext, TopNewsResponse } from './globalTypes'
 import { getTopNews } from './Services/topHeadlineService'
 import Footer from './TopNews/Footer'
 
 export const [useNewsData, NewsDataProvider] = createStateContext<NewsDataContext>({
   currentArticles: [],
-  currentCategory: Categories.GENERAL,
   isLoading: false,
   getNews: () => ({}),
 })
@@ -65,7 +63,6 @@ const AppContainer = () => {
 
   return (
     <>
-      <Navigation />
       <Articles />
       <Footer />
     </>

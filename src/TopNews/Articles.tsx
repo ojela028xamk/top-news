@@ -5,7 +5,7 @@ import { useNewsData } from '../AppContainer'
 import placeholder from '../placeholder.jpg'
 
 const Articles = () => {
-  const [{ currentArticles, currentCategory, isLoading }] = useNewsData()
+  const [{ currentArticles, isLoading }] = useNewsData()
 
   const getTimeAgo = (date: string) => {
     const currentDate = new Date() as any
@@ -43,11 +43,8 @@ const Articles = () => {
       ) : (
         <div className={css.articles}>
           <div className={css.articles_list}>
-            <h1>{currentCategory}</h1>
             <div className={css.articles_grid}>
               {currentArticles.map((article, index) => {
-                const articleTitle = article.title.slice(0, article.title.lastIndexOf('-'))
-
                 return (
                   <Card key={index} className={css.article_card}>
                     <Card.Img variant='top' src={article.image ? article.image : placeholder} />
@@ -58,7 +55,7 @@ const Articles = () => {
                       <Button className={css.button} href={article.url} target='_blank' rel='noreferrer'>
                         Read article
                       </Button>
-                      <Card.Title className={css.title}>{articleTitle}</Card.Title>
+                      <Card.Title className={css.title}>{article.title}</Card.Title>
                       <Card.Text className={css.text}>
                         {article.summary ? article.summary : '<No description>'}
                       </Card.Text>
