@@ -28,7 +28,7 @@ const getNews = async (url: string) => {
   const options = {
     method: 'GET',
     headers: {
-      'x-api-key': '7627a5aeee3b4341a014c28f5d138401',
+      'x-api-key': token ? token : '',
     },
   }
 

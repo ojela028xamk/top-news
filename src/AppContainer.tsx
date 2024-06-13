@@ -1,8 +1,8 @@
 import { createStateContext, useEffectOnce } from 'react-use'
 import Navigation from './TopNews/Navigation'
 import Articles from './TopNews/Articles'
-import { Categories, NewsDataContext, TopHeadlinesResponse } from './globalTypes'
-import { getTopHeadlines } from './Services/topHeadlineService'
+import { Categories, NewsDataContext, TopNewsResponse } from './globalTypes'
+import { getTopNews } from './Services/topHeadlineService'
 import Footer from './TopNews/Footer'
 
 export const [useNewsData, NewsDataProvider] = createStateContext<NewsDataContext>({
@@ -15,19 +15,23 @@ export const [useNewsData, NewsDataProvider] = createStateContext<NewsDataContex
 const AppContainer = () => {
   const setNewsData = useNewsData()[1]
 
-  const getNews = (category: Categories) => {
+  const getNews = () => {
     setNewsData((prev) => ({
       ...prev,
       isLoading: true,
     }))
 
-    getTopHeadlines(category)
+    getTopNews()
       .then((res) => {
-        const response = res as TopHeadlinesResponse
+        console.log('NO REQUEST!!!!!')
+        const response = res as TopNewsResponse
+        const newsArr = response.top_news.map((headline) => headline.news[0])
+
+        sessionStorage.setItem('topNews', JSON.stringify(newsArr))
+
         setNewsData((prev) => ({
           ...prev,
-          currentArticles: response.articles,
-          currentCategory: category,
+          currentArticles: newsArr,
         }))
       })
       .catch((err) => {
@@ -42,7 +46,17 @@ const AppContainer = () => {
   }
 
   useEffectOnce(() => {
-    getNews(Categories.GENERAL)
+    const hasNewsData = sessionStorage.getItem('topNews')
+
+    if (!hasNewsData) getNews()
+
+    if (hasNewsData) {
+      setNewsData((prev) => ({
+        ...prev,
+        currentArticles: JSON.parse(hasNewsData),
+      }))
+    }
+
     setNewsData((prev) => ({
       ...prev,
       getNews: getNews,

@@ -9,7 +9,7 @@ export enum Categories {
 }
 
 export type NewsDataContext = {
-  currentArticles: Article[]
+  currentArticles: News[]
   currentCategory: Categories
   isLoading: boolean
   getNews: (category: Categories) => void
