@@ -7,6 +7,8 @@ import placeholder from '../placeholder.jpg'
 const Articles = () => {
   const [{ currentArticles, isLoading }] = useNewsData()
 
+  const sortedArticles = currentArticles.sort((a, b) => Date.parse(b.publish_date) - Date.parse(a.publish_date))
+
   const getTimeAgo = (date: string) => {
     const currentDate = new Date() as any
     const articleDate = new Date(date) as any
@@ -44,7 +46,7 @@ const Articles = () => {
         <div className={css.articles}>
           <div className={css.articles_list}>
             <div className={css.articles_grid}>
-              {currentArticles.map((article, index) => {
+              {sortedArticles.map((article, index) => {
                 return (
                   <Card key={index} className={css.article_card}>
                     <Card.Img variant='top' src={article.image ? article.image : placeholder} />

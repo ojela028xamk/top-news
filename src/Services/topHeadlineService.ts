@@ -17,7 +17,8 @@ const getNews = async (url: string) => {
 }
 
 const getTopNews = async () => {
-  return getNews(`https://api.worldnewsapi.com/top-news?source-country=us&language=en&date=2024-06-12`)
+  const currentDate = new Date().toJSON().slice(0, 10)
+  return getNews(`https://api.worldnewsapi.com/top-news?source-country=us&language=en&date=${currentDate}`)
 }
 
 export { getTopNews }
